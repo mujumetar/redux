@@ -1,8 +1,8 @@
 
 import './App.css'
-import { decCount, incCount } from './redux/action'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { decCount, incCount } from './toolkit/counterSlice'
 
 function App() {
   const count = useSelector((state) => state.count)
