@@ -1,18 +1,35 @@
 
+import { useSelector } from 'react-redux'
 import './App.css'
+import Login from './components/Login'
+import Products from './components/Products'
+import Navbar from './components/Navbar'
+import Cart from './components/Cart'
+import { showCart } from './features/cartSlice'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { decCount, incCount, resetCount } from './toolkit/counterSlice'
 
 function App() {
-  const count = useSelector((state) => state.count)
-  const dispatch = useDispatch()
+
+  let auth = useSelector(state => state.auth.auth)
+  let cart = useSelector(state => state.cart.cartList)
+  let showCart = useSelector(state => state.cart.showCart)
+
+
+  console.log(cart)
+  console.log(auth)
+
   return (
+
     <>
-      <button onClick={() => dispatch(incCount())} >+</button>
-      <h1>{count}</h1>
-      <button onClick={() => dispatch(decCount())}>-</button>
-      <button onClick={() => dispatch(resetCount())}>Reset</button>
+
+      {auth && <Navbar />}
+      {!auth && <Login />}
+      {auth && <Products />}
+      {showCart && <Cart />}
+
+
+
+
     </>
   )
 }
